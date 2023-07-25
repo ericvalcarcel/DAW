@@ -1,0 +1,16 @@
+Ejercicio e-commerce
+====================
+
+Crea una clase abstracta Usuario con propiedades username, email y métodos login, logout.
+
+Crea una interfaz ICrud que tenga los métodos create, read, update y delete.
+
+Crea una clase Producto que tenga propiedades nombre, precio, descripción y que implemente ICrud.
+
+Crea un Rasgo TRevisable que tenga un método darOpinion para dejar un comentario sobre un Producto.
+
+Crea la clase Administrador que herede de Usuario e implemente ICrud.
+
+Crea la clase Cliente que herede de Usuario y utilice el Rasgo TRevisable.
+
+Activar objetos de las diferentes clases y mostrar funcionalidades por pantalla.

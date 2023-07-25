@@ -1,0 +1,15 @@
+SELECT p.ProductName, c.CategoryName, s.SupplierName, o.Quantity,
+	   p.Price, o.Quantity * p.Price as Improte
+FROM orderdetails o  INNER JOIN products p
+		ON o.ProductID = o.ProductID
+        INNER JOIN suppliers s
+        ON p.SupplierID = S.SupplierID
+        INNER JOIN categories c
+        ON p.CategoryID = c.CategoryID
+WHERE  o.OrderID IN 
+(
+	SELECT OrderID
+    FROM orders
+    WHERE OrderDate BETWEEN '1996-10-01' AND '1996-12-31'
+)
+ORDER BY  c.CategoryName ASC, p.ProductName

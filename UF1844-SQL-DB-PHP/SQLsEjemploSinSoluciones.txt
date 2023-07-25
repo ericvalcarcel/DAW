@@ -1,0 +1,98 @@
+1.- Nombre, teléfono y ciudad de los clientes de Italia y Francia
+
+
+
+1a.- El nombre y apellido de todos los empleados que sean mujeres, ordenados por apellido y nombre.
+
+
+2.- El nombre del producto y el precio de los productos entre 10 y 50 €.
+
+
+
+2a.- De la tabla de pedidos, mostrar un listado de pedidos que muestre el idPedido, el código de cliente, la fecha de pedido y los costes logísticos de cada pedido, de los pedidos del último trimestre de 2011, con costes logísticos superiores a 50, ordenados por fecha de pedido.
+
+
+
+2b.- Calcular la suma de los costes logísticos de todos los pedidos del último trimestre de 2011.
+
+
+
+2c.- Calcular la suma de los costes logísticos de todos los pedidos del último trimestre de 2011, calculado por días. Interesa sólo los días en que los costes logísticos son superiores a 75. 
+
+
+
+2d.- Calcular la suma de los costes logísticos de todos los pedidos, calculado por cliente. 
+
+
+
+3.- Obtener los datos completos del producto cuyo identificador es 58.
+
+
+
+4.- Queremos saber todos los países de los cuales tenemos clientes. Ordenados alfabeticamente los países.
+
+
+5.- Calcular el precio medio de los productos de la categoría bebidas
+
+
+
+6.- Cuantos productos tenemos que no sean de bebidas (1) ni pescados/mariscos (8)
+
+
+7.- Los tres productos más caros
+
+
+
+8.- Cual es el stock total de productos que tenemos en nuestro almacén
+
+
+
+9.- Inventario valorado de los productos que tenemos en almacén
+
+
+
+10.- Obtener el nombre del producto y precio, ordenado por precio, de los productos de bebidas que tengan un precio mayor al precio medio
+
+
+
+11.- Obtener los productos que estan con stock entre 10 y 20. NombreProducto y stock, ordenados por stock inverso.
+
+
+
+12.- Obtener un listado de id de pedido y fecha de pedido de los pedidos del año 2011, ordenados por fecha de pedido.
+
+
+
+13.- Obtener el nombre y stock de los productos Bebidas, Lácteos y Frutas, ordenados por stock descendente
+
+
+
+14.- Hay algun producto en la base de datos neptuno que no esté categorizado?
+
+
+
+15.- Listado de clientes, codigo de cliente y nombre de cliente, de los cuales no tenemos el fax
+
+
+
+16.- Queremos saber si tenemos algún producto que no haya tenido pedidos todavía. Listar nombre del producto, ordenados alfabéticamente.
+
+
+
+17.- Listar los clientes (nombre compañía, telefono) ordenados por Paises y nombre.
+
+
+
+18.- Obtener el nombre del cargo, el salario medio, el numero de empleados, agrupando por el nombre del cargo. Orden por nombre del cargo.
+
+
+
+19.- Agrupando por categorías de productos, mostrar el idCategoría, cuantos productos hay en esa categoría, el precio medio, el precio máximo, el precio mínimo, el stock total y el valor del stock. Ordenado por idCategoría.
+
+
+
+
+
+
+21.- Agrupando por categorías de productos, mostrar el idCategoría, cuantos productos hay en esa categoría, el precio medio, el precio máximo, el precio mínimo, el stock total y el valor del stock, para los productos cuyo precio sea menor a 25. Ordenado por idCategoría. Pero solo se debe mostrar para las categorías cuyo valor del stock sea superior a 3000.
+

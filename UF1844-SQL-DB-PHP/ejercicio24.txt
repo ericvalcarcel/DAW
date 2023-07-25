@@ -1,0 +1,13 @@
+24.- Obtener el último pedido de cada cliente
+
+SELECT c.NombreEmpresa ,
+(	
+    SELECT dp1.IdPedido
+    FROM detalles_de_pedido AS dp1
+        INNER JOIN pedido AS p1
+        ON dp1.IdPedido = p1.IdPedido
+    WHERE p1.IdCliente = c.IdCliente
+    ORDER BY dp1.IdPedido DESC
+    LIMIT 1
+ ) as UltimoPedido
+FROM cliente as c

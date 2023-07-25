@@ -1,0 +1,24 @@
+.contenedor {
+    width: 25rem;
+    height: 25rem;
+    border: 0.7rem solid #1fac5a;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 3rem;
+   
+}
+
+.imagen {
+    width: 100%;
+    height: 100%;
+    background: url("../source/img/daft-punk.jpg");
+    background-position: center;
+    background-size: cover;
+    transition: all 1s;
+    
+}
+
+.imagen:hover {
+    transform: scale(1.2);
+}

@@ -1,0 +1,31 @@
+Ejemplos de programación en Ajax
+================================
+
+1.- Mostrar un datatable de usuarios en las siguientes condiciones:
+	- Conectarse a la API: https://randomuser.me/api/?results=Num
+	- Devolverá la información en formato JSON
+	- Una vez recibamos el objeto "data" como resultado del Ajax, se deberá acceder a la propiedad "results" para obtener los datos:
+		let usuarios = data.results;
+	- Para acceder a cada uno de los campos de la información recibida, podrá hacerse por ejemplo:
+		let nombre = usuarios[i].name.first + " " + usuario[i].name.last;
+	-Columnas:
+		- Nombre completo
+		- Dirección
+		- Email
+		- Usuario
+		- Teléfono
+		
+
+
+2.- Desarrollar un ejercicio en el que se muestre un mapa con los principales monumentos arquitectónicos de Cataluña (base de datos simulada en javascript):
+
+let monumentos = ["Sagrada familia", "Santes Creus",.....]
+let latitudes = [lat1,lat2,lat3,....]
+let longitudes = [lon1,lon2,lon3,....]
+
+
+- Al clicar en el tic de un monumento, se hace una llamada por Ajax a una página que nos devuelve una fotografía del monumento que se puede ver en la parte inferior de la página.
+- Un monumento se puede marcar como favorito cuando se presenta su fotografía, clicando en el botón correspondiente.
+- En otra parte de la página debe existir la lista de monumentos que un usuario tiene como favoritos.
+
+

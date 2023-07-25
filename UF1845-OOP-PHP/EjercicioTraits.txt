@@ -1,0 +1,11 @@
+Ejercicio:
+
+Crea una clase abstracta Empleado con propiedades como "nombre", "codigo" y "posicion" y métodos como "trabajar" y "descansar".
+
+Crea una interfaz IGestionable que tenga los métodos "promocionar" y "degradar".
+
+Crea un Trait TDescanso que tenga un método "calcularDiasVacaciones" que calcula los días de vacaciones del empleado basado en su antigüedad (en años). Las vacaciones podrían calcularse sumado los años de antigüedad + 10.
+
+Crea la clase Gerente que extienda Empleado, implemente IGestionable y use el Trait TDescanso.
+
+Crea la clase Personal que extienda Empleado y use el Trait TDescanso.

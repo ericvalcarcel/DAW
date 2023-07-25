@@ -1,0 +1,12 @@
+Ejercicio de una Biblioteca
+===========================
+
+Biblioteca
+ItemBiblioteca
+Articulo
+ILegible -> leer()
+Sumario
+Libro
+Revista
+TPrestable -> prestar(), devolver()
+

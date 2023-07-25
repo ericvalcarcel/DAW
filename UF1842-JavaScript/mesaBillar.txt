@@ -1,0 +1,7 @@
+Ejercicio Canvas:
+
+- Dibujar en un canvas una mesa de billar y poner a mover una pelota en una dirección aleatoria, rebotando en las esquinas.
+
+- Imagen de una mesa de billar
+
+- Imagen de una bola de billar

@@ -1,0 +1,82 @@
+Ejemplo de union
+================
+
+SELECT CustomerName as Empresa, ContactName, City, 'C' as Tipo
+FROM customers
+UNION
+SELECT SupplierName as Empresa, ContactName, City, 'S' as Tipo
+FROM suppliers
+UNION
+SELECT 'Northwind' as Empresa, CONCAT(firstname,' ',lastname), NULL, 'E' AS Tipo
+FROM employees
+ORDER BY 2 ASC
+
+
+Ejemplos de INNER JOIN
+======================
+Obtener los productos, nombre, precio y categoría a la que pertenecen, ordenados por categoría y luego nombre.
+
+SELECT p.ProductName, p.Price, c.CategoryName
+FROM products p INNER JOIN categories c 
+		ON p.CategoryID = c.CategoryID
+ORDER BY c.CategoryName ASC, p.ProductName ASC
+
+
+Obtener los productos de la categoría 'Beverages' (nombre, precio y Proveedor que suministra), ordenados nombre.
+
+SELECT p.ProductName, p.Price, s.SupplierName
+FROM products p INNER JOIN categories c 
+		ON p.CategoryID = c.CategoryID
+     INNER JOIN suppliers s 
+        ON s.SupplierID = p.SupplierID
+WHERE c.CategoryName = 'Beverages'
+ORDER BY p.Price DESC
+
+
+
+Obtener los pedidos del último trimestre de 1996, con la información de IdPedido, Fecha, Cliente, Pais, ordenado por Cliente, fecha
+
+SELECT c.CustomerName, c.Country, o.OrderID, o.OrderDate
+FROM customers c INNER JOIN orders o 
+		ON c.CustomerID = o.CustomerID
+WHERE o.OrderDate BETWEEN '1996-10-01' AND '1996-12-31'
+ORDER BY c.CustomerName asc, o.OrderDate ASC
+
+
+Obtener el listado de detalles de pedidos correspondiente a un cierto pedido. Debe mostrar:
+	- Nombre Producto
+	- Categoria
+	- Nombre Proveedor
+	- Cantidad
+	- Precio
+	- Importe
+
+Ordenado por categoría y nombre de producto
+
+SELECT p.ProductName, c.CategoryName, s.SupplierName, o.Quantity, p.Price, o.Quantity * p.Price as Importe
+FROM orderdetails o INNER JOIN products p 
+		ON o.ProductID = p.ProductID
+     INNER JOIN suppliers s 
+     	ON p.SupplierID = s.SupplierID 
+     INNER JOIN categories c 
+        ON p.CategoryID = c.CategoryID
+WHERE o.OrderID IN (10248, 10249)
+ORDER BY c.CategoryName ASC, p.ProductName ASC
+
+
+Idem anterior para todos los pedidos del último trimestre del 1996
+
+SELECT p.ProductName, c.CategoryName, s.SupplierName, o.Quantity, p.Price, o.Quantity * p.Price as Importe
+FROM orderdetails o INNER JOIN products p 
+		ON o.ProductID = p.ProductID
+     INNER JOIN suppliers s 
+     	ON p.SupplierID = s.SupplierID 
+     INNER JOIN categories c 
+        ON p.CategoryID = c.CategoryID
+WHERE o.OrderID IN 
+(
+	SELECT orderId
+    FROM orders
+    WHERE OrderDate BETWEEN '1996-10-01' AND '1996-12-31'
+)
+ORDER BY c.CategoryName ASC, p.ProductName ASC

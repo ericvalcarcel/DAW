@@ -1,0 +1,43 @@
+
+#imgPaisaje{
+    position:relative;
+    z-index:1;
+    border-radius:50%;
+    top:-50%;
+    left:10px;
+    transition: transform 0.5s;
+}
+
+#imgPaisaje0{
+    position:relative;
+    z-index: 0;
+    opacity: 0;
+}
+
+#divCover{
+    position:relative;
+    z-index:100;
+    width: calc(50% + 20px);
+    border:10px solid rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0);
+    border-radius:50%;
+}
+
+#divCover:hover ~ #imgPaisaje{
+    transform:scale(1.05,1.05);
+}
+
+/*********************************************************************/
+
+#divCover2{
+    border-radius:50%;
+    overflow: hidden;
+}
+#imgPaisaje2{
+    border-radius:50%;
+    transition: transform 0.5s;
+}
+
+#imgPaisaje2:hover{
+    transform:scale(1.05,1.05);
+}

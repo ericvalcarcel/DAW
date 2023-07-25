@@ -1,0 +1,47 @@
+Ejercicio POO Estudiantes
+=========================
+
+
+1) Queremos representar con programación orientada a objetos, un aula con estudiantes y un profesor.
+
+2) Tanto de los estudiantes como de los profesores necesitamos saber su nombre, edad y sexo. 
+
+3) De los estudiantes, queremos saber también su calificación actual (entre 0 y 10) y del profesor que materia imparte.
+
+4) Las materias disponibles son matemáticas, filosofía y física.
+
+5) Los estudiantes pueden hacer novillos, por lo que si hacen novillos o no van a clase (baja, gestiones, etc.), deberá quedar registrado en el sistema (ya que cada alumno está registrado y dispone de su sitio asignado).
+
+6) El profesor también puede no encontrarse disponible (reuniones, baja, etc.)
+
+7) Las dos informaciones anteriores, tanto de Alumnos como de Profesores, debe denominarse igual (por ejemplo motivoAusencia).
+
+8) El aula debe tener un identificador numérico, el número máximo de estudiantes y para qué asignatura está destinada (matemáticas, filosofía o física). Pensar qué atributos adicionales puede necesitar.
+
+9) Para que se pueda dar clase en un aula, se necesita que el profesor esté disponible, que el profesor imparta la materia correspondiente en el aula correspondiente (un profesor de filosofía no puede dar clase en un aula de matemáticas) y que haya más del 50% de alumnos asistiendo a la clase.
+
+10) El objetivo es crear un aula de alumnos y un profesor y determinar si puede darse clase, teniendo en cuenta las condiciones antes dichas.
+
+11) Si se puede dar clase, supongamos que se les está entregando las notas a todos los alumnos de la clase.
+
+12) Mostrar un listado de alumnos (separados por sexo) que muestre los alumnos que están aprobados y el tanto por ciento de aprobados de cada sexo.
+
+13) Se debe crear manualmente los datos de todos los objetos necesarios en la problemática. Los datos pueden ser los que se quiera siempre y cuando tengan sentido (la edad de las personas no puede ser, por ejemplo, 120 en alumnos o profesores, o la calificación no puede ser un valor de 12, suponiendo calificaciones de 0 a 10).
+
+
+Aula
+
+Profesor
+
+Estudiante
+
+Materia
+
+Persona
+
+Clase
+
+
+
+
+

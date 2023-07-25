@@ -1,0 +1,25 @@
+Diseñar un formulario de candidatura a empresa
+==============================================
+
+Logo empresa y título de la oferta 
+
+(Identificador de puesto de trabajo al que se opta)*
+Nombre*
+Apellidos*
+Dirección
+Ciudad
+País* (cmb)
+Género* 
+Email*
+Teléfono
+Fecha de nacimiento*
+Valoración de conocimientos TIC (1 a 5)* (rng)
+Rango de sueldo deseado* (num)
+Fotografía
+Documento CV* 
+Observaciones
+
+Aceptar Aviso Legal y Política de Privacidad
+
+Botón de submit
+

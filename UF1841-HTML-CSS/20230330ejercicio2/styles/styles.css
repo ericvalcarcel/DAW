@@ -1,0 +1,25 @@
+.green{
+    background-color: green;
+    height: 50px;
+    border: 2px solid black;
+}
+.lightblue{
+    background-color: lightblue;
+    height: 150px;
+    border: 2px solid black;
+}
+.gray{
+    background-color: gray;
+    height: 150px;
+    border: 2px solid black;
+}
+.skyblue{
+    background-color: skyblue;
+    height: 70px;
+    border: 2px solid black;
+}
+.orange{
+    background-color: orange;
+    height: 150px;
+    border: 2px solid black;
+}

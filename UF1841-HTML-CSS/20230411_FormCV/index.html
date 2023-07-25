@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <title>Formulario Bootstrap</title>
+  <meta name="description" content="un formulario echo con bootstrap" />
+  <meta name="author" content="David Pérez">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="styles/styles.css" />
+
+</head>
+
+<body>
+  <header>
+
+
+  </header>
+  <nav>
+
+  </nav>
+  <main>
+
+    <div class="container">
+
+      <h1>Analista Programador Junior JAVA, PHP, 100% En remoto</h1>
+
+      <div class=" row ">
+
+        <div class="col-md-6">
+
+          <form method="post" action="saveCV.php">
+
+            <input type="hidden" id="hidCodigo" name="hidCodigo" value="ref-1001" />
+
+            <div class="mb-3 row">
+              <label for="txtNombre" class="form-label col-sm-3">Nombre *</label>
+              <div class="col-sm-9">
+                <!-- control-form arregla los tamaños del recuadro de input-->
+                <input type="text" id="txtNombre" name="txtNombre" maxlength="50" class="form-control" required />
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="txtApellidos" class="form-label col-sm-3">Apellidos *</label>
+
+              <div class="col-sm-9">
+
+                <input type="text" id="txtApellidos" name="txtApellidos" class="form-control" required
+                  maxlength="100" />
+
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="txtDireccion" class="form-label col-sm-3">Direccion</label>
+
+              <div class="col-sm-9">
+
+                <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" maxlength="200" />
+
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="txtCiudad" class="form-label col-sm-3">Ciudad</label>
+
+              <div class="col-sm-9">
+
+                <input type="text" id="txtCiudad" name="txtCiudad" class="form-control" maxlength="50" />
+
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="cmbPais" class="col-form-label col-sm-3 ">Pais *</label>
+
+              <div class="col-sm-9">
+
+                <select class="form-control  " id="cmbPais" name="cmbPais" multiple size="1" required>
+                  <option value="1">Seleccionar</option>
+                  <option value="2">España</option>
+                  <option value="3">Italia</option>
+                  <option value="4">Alemania</option>
+                  <option value="5">Catalunya</option>
+                </select>
+
+              </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="radGenero" class="form-label col-sm-3">Genero</label>
+
+              <div class="col-sm-9">
+
+                <div class="btn-group">
+                  <input type="radio" class="btn-check form-control" name="radGenero" id="radHombre" required />
+                  <label class="btn btn-outline-primary" for="radHombre">Hombre</label>
+
+                  <input type="radio" class="btn-check form-control" name="radGenero" id="radMujer" required />
+                  <label class="btn btn-outline-primary" for="radMujer">Mujer</label>
+
+                  <input type="radio" class="btn-check form-control" name="radGenero" id="radOtros" required />
+                  <label class="btn btn-outline-primary" for="radOtros">otros</label>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="emaEmail" class="form-label col-sm-3">Email *</label>
+
+              <div class="col-sm-9">
+
+                <input type="email" name="emaEmail" id="emaEmail" required class="form-control" maxlength="100" />
+
+              </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="txtTelefono" class="form-label col-sm-3">Telefono</label>
+
+              <div class="col-sm-9">
+
+                <input type="tel" name="txtTelefono" id="txtTelefono" class="form-control" maxlength="100" />
+
+              </div>
+
+            </div>
+            <div class="mb-3 row">
+
+              <label for="datFechaNacimiento" class="form-label col-sm-3">Fecha de Nacimiento *</label>
+
+              <div class="col-sm-9">
+
+                <input type="date" name="datFechaNacimiento" id="datFechaNacimiento" class="form-control" required />
+
+              </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="rngTIC" class="form-label col-sm-3 ">Valoración de conocimientos TIC (1 a 5) *</label>
+
+              <div class="col-sm-9">
+
+                <input type="range" class="form-range" id="rngTIC" name="rngTIC" min="0" max="5" value="0"
+                  step="1" />
+
+              </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="numSueldo" class="form-label col-sm-3 ">Sueldo deseado *</label>
+
+              <div class="col-sm-9">
+
+                <input type="number" id="numSueldo" name="numSueldo" min="2000" max="75000" step="1"
+                  placeholder="20000 a 75000" class="form-control" required />
+
+              </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="imgFotografia" class="form-label col-sm-3">Fotografia</label>
+
+              <div class="col-sm-9">
+
+                <input class="form-control" type="file" id="imgFotografia" name="imgFotografia" />
+
+              </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="filCv" class="form-label col-sm-3">Documento CV *</label>
+
+              <div class="col-sm-9">
+
+                <input class="form-control" type="file" id="filCv" name="filCv" required />
+
+              </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+              <label for="txtObservaciones" class="form-label col-sm-3">Observaciones</label>
+
+              <div class="col-sm-9">
+                <textarea class="form-control" rows="5" id="txtObservaciones" name="txtObservaciones" maxlength="300"></textarea>
+              </div>
+
+            </div>
+
+
+            <div class="mb-3 row">
+
+              <div class="form-check form-switch col-sm-6">
+
+                <input class="form-check-input" type="checkbox" value="true" id="cboxAviso" name="cboxAviso">
+                <label class="form-check-label" for="cboxAviso"><a href="/aviso.html" target="_blank">Aviso legal</a> </label>
+
+              </div>
+
+              <div class=" form-check form-switch col-sm-6">
+
+                <input class="form-check-input" type="checkbox" value="true" id="cboxPrivacidad" name="cboxPrivacidad">
+                <label class="form-check-label" for="cboxPrivacidad"><a href="politica.html" target="_blank">Política de Privacidad</a> </label>
+
+
+              </div>
+
+
+
+
+            </div>
+
+            <div class="mb-3">
+              
+              <div class="col-sm-9 offset-sm-3">
+                <button type="submit" class="btn btn-primary btn-lg enviar">Submit</button>
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+
+
+
+        <div class="col-md-6 ">
+
+          <h3>Tipo de empleo</h3>
+          <p>Contrato indefinido</p>
+          <hr />
+          <p>Analista Programador Junior JAVA, PHP en 100% En remoto.</p>
+          <p>En serem estamos comprometidos con diversos proyectos y queremos contar con los mejores profesionales del
+            sector.</p>
+          <p>Actualmente nos encontramos en la búsqueda de un ANALISTA PROGRAMADOR JUNIOR JAVA PHP.</p>
+          <p>Funciones Desarrollo de pantallas con javascript y drupal.</p>
+          <p>Requisito indispensable Tener experiencia de 1 año y medio en las siguientes tecnologías:</p>
+          <ul>
+            <li>PHP drupal JavaScript CSS HTML.</li>
+            <li>Experiencia en cualquier CMS.</li>
+          </ul>
+          <p>Obligatorio inglés B2 o superior.</p>
+          <p>100 Teletrabajo con guardias semanales (repartidas con más miembros del equipo).</p>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+  <aside>
+
+  </aside>
+  <footer>
+
+  </footer>
+
+  <!-- Si utilizamos componentes de Bootstrap que requieran Javascript agregar el siguiente archivo -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+    crossorigin="anonymous"></script>
+
+  <script src="scripts/scripts.js"></script>
+</body>
+
+</html>

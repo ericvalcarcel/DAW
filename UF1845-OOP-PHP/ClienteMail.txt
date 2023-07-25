@@ -1,0 +1,22 @@
+Ejercicio de un cliente de mail
+===============================
+
+Preparar un cliente de mail:
+	- Caja "Destinatario" de lista de correos
+	- Caja "CC" de lista de correos
+	- Caja "CO" de lista de correos
+	- Tema
+	- Mensaje
+	
+	- Botones:
+		- Guardar mail: guarda el correo en un fichero de texto con el formato siguiente:
+			DEST=....
+			CC=....
+			CO=....
+			Tema=...
+			Mensaje=...
+		
+		- Recupera mail: recupera el mail guardado y lo muestra en el formulario
+		
+		- Enviar mail: alert("PENDIENTE");
+		

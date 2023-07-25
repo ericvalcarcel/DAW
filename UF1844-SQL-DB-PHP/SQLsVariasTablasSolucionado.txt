@@ -1,0 +1,348 @@
+SQLs de nivel
+=============
+
+1- Obtener un listado de empleados, nombre y apellidos del empleado, y el número de pedidos vendidos, ordenado por apellido del empleado.
+
+SELECT e.nombre, e.apellidos, COUNT(*) as pedidos
+FROM empleado e
+	INNER JOIN pedido p ON p.idEmpleado=e.idEmpleado
+GROUP BY e.nombre, e.apellidos
+ORDER BY e.apellidos
+
+
+
+2- Obtener un listado de los productos que nos compra cada cliente y el número de veces que nos lo ha comprado. Formato: nombre del cliente, nombre del producto y número de veces que nos lo ha comprado, ordenado por nombre de cliente y nombre de producto. Sólo nos interesan los productos que nos lo haya comprado más de 1 vez.
+
+Nombre cliente	Nombre Producto		Num. de compras
+
+SELECT cl.NombreEmpresa, pr.NombreProducto, COUNT(*) AS CantidadTotal
+FROM cliente AS cl
+    INNER JOIN pedido AS pe
+    ON cl.IdCliente= pe.IdCliente
+    INNER JOIN detalles_de_pedido as dp
+    ON pe.IdPedido = dp.IdPedido
+    INNER JOIN producto as pr
+    ON dp.IdProducto = pr.IdProducto
+GROUP BY cl.NombreEmpresa, pr.NombreProducto
+HAVING CantidadTotal > 1
+ORDER BY cl.NombreEmpresa ASC, pr.NombreProducto ASC
+
+
+
+3- Obtener un listado de los importes vendidos por cada empleado, clasificado por categorías. Ordenado por nombre de empleado y nombre de la categoría.
+
+Nombre del empleado		Nombre de la categoría		Importe vendido
+Nancy Davolio			Bebidas						12650
+Nancy Davolio			Pescados					23456
+...
+
+select concat(e.nombre, ' ', e.apellidos) as nombreEmpleado,
+c.NombreCategoria, round(sum(de.precioUnidad*de.cantidad*(1-de.descuento)),2) as importeVendido
+from empleado e
+	inner join pedido p 
+    	on p.idEmpleado=p.idEmpleado
+	inner join detalles_de_pedido de 
+    	on de.idPedido=p.idPedido
+	inner join producto pr 
+    	on pr.idProducto=de.idProducto
+	inner join categoria c 
+    	on c.idCategoria=pr.idCategoria
+group by c.NombreCategoria, nombreEmpleado
+order by nombreEmpleado,c.NombreCategoria;
+
+
+
+4- Obtener el listado de productos (Nombre de producto y precio) de los 5 pedidos de mayor importe. Ordenados por Nombre de producto y precio
+
+Nombre de Producto		Precio
+.........				12,5
+.........				23,8
+
+
+a) Obtener el listado de productos (Nombre de producto y precio) de unos ciertos pedidos
+
+SELECT DISTINCT pr.NombreProducto, dp.PrecioUnidad, pr.PrecioUnidad
+FROM detalles_de_pedido AS dp
+    INNER JOIN producto AS pr
+ 	   ON dp.IdProducto = pr.IdProducto
+WHERE dp.IdPedido IN 
+(
+	SELECT dp1.IdPedido
+	FROM detalles_de_pedido AS dp1
+	GROUP BY dp1.IdPedido
+	ORDER BY ROUND(SUM(dp1.PrecioUnidad*dp1.Cantidad*(1-dp1.Descuento)),2) DESC
+	LIMIT 5
+)
+ORDER BY 1 ASC
+
+
+b) Los 5 pedidos de mayor importe
+
+SELECT dp1.IdPedido
+FROM detalles_de_pedido AS dp1
+GROUP BY dp1.IdPedido
+ORDER BY ROUND(SUM(dp1.PrecioUnidad*dp1.Cantidad*(1-dp1.Descuento)),2) DESC
+LIMIT 5
+
+
+
+SELECT DISTINCT pr.NombreProducto, dp.PrecioUnidad, pr.PrecioUnidad
+FROM detalles_de_pedido AS dp
+    INNER JOIN producto AS pr
+ 	   ON dp.IdProducto = pr.IdProducto
+WHERE dp.IdPedido IN 
+(
+	SELECT dp1.IdPedido
+	FROM detalles_de_pedido AS dp1
+	GROUP BY dp1.IdPedido
+	ORDER BY ROUND(SUM(dp1.PrecioUnidad*dp1.Cantidad*(1-dp1.Descuento)),2) DESC
+	LIMIT 5
+)
+ORDER BY 1 ASC
+
+
+SELECT DISTINCT pr.NombreProducto, dp.PrecioUnidad, pr.PrecioUnidad
+FROM detalles_de_pedido AS dp
+    INNER JOIN producto AS pr
+    ON dp.IdProducto = pr.IdProducto
+WHERE
+    dp.IdPedido IN
+    (
+     SELECT seleccionIdPedido.IdPedido
+     FROM
+         (
+            SELECT dp1.IdPedido
+            FROM detalles_de_pedido AS dp1
+            GROUP BY dp1.IdPedido
+            ORDER BY ROUND(SUM(dp1.PrecioUnidad*dp1.Cantidad*(1-dp1.Descuento)),2) DESC
+            LIMIT 5
+         ) as seleccionIdPedido
+    )
+ORDER BY 1 ASC
+
+
+
+
+
+
+5- Listado de empleados que muestre todos sus pedidos con desglose del pedido por cada uno de los productos comprados y el importe de cada producto comprado. Mostrar el nombre completo del empleado, el idPedido, la fecha del pedido, el nombre de producto y su importe, ordenado por Nombre de empleado y Idpedido
+
+Empleado		idpedido	fecha		Nombre Producto		Importe
+Nancy davolio	5260		1/1/2021	Coca cola			1245
+Nancy davolio	5260		1/1/2021	Pan Bimbo			645
+Nancy davolio	5285		2/1/2021	Te					645
+
+select concat(e.nombre, ' ', e.apellidos) as nombreEmpleado, 
+	de.idPedido, 
+    p.FechaPedido, 
+	pr.nombreProducto,
+ 	de.precioUnidad * de.Cantidad * (1-descuento) as total
+from empleado e
+	inner join pedido p on p.idEmpleado=e.idEmpleado
+	inner join detalles_de_pedido de on de.idPedido=p.idPedido
+	inner join producto pr on pr.idProducto=de.idProducto
+order by nombreEmpleado,p.idPedido
+
+
+
+
+6- Listado de empleados con todos sus pedidos y el importe de cada pedido, ordenados por Nombre de empleado y idPedido
+
+select concat(e.nombre, ' ', e.apellidos) as nombreEmpleado, 
+	de.idPedido, 
+ 	SUM(de.precioUnidad * de.Cantidad * (1-descuento)) as total
+from empleado e
+	inner join pedido p on p.idEmpleado=e.idEmpleado
+	inner join detalles_de_pedido de on de.idPedido=p.idPedido
+GROUP BY de.idPedido, nombreEmpleado
+order by nombreEmpleado,p.idPedido
+
+
+
+7- Obtener el precio medio de catálogo de los productos, el coste medio de los envíos logísticos de los pedidos y el contaje total de los pedidos realizados.
+
+1
+
+SELECT sql1, sql2, sql3
+
+SELECT AVG(PrecioUnidad)
+FROM producto
+
+SELECT AVG(cargo)
+FROM pedido
+
+SELECT count(*)
+FROM pedido
+
+--------
+0.0019
+
+SELECT AVG(PrecioUnidad)
+FROM producto
+
+UNION 
+
+SELECT AVG(cargo)
+FROM pedido
+
+UNION 
+
+SELECT count(*)
+FROM pedido
+
+-----
+0.0018
+
+SELECT (SELECT AVG(PrecioUnidad)
+FROM producto
+),
+(SELECT AVG(cargo)
+FROM pedido
+),
+(SELECT count(*)
+FROM pedido)
+
+
+8- Obtener los 5 productos que más veces se hayan comprado. Mostrar el número de veces que se ha comprado y el nombreProducto.
+
+NombreProducto		Veces comprado
+
+SELECT p.NombreProducto, COUNT(*) as VecesComprado
+FROM	producto p INNER JOIN detalles_de_pedido dp
+	ON p.IdProducto = dp.IdProducto
+GROUP BY p.NombreProducto
+ORDER BY VecesComprado DESC
+LIMIT 5
+
+
+
+9- Obtener el nombre de clientes que no tengan pedidos
+
+SELECT NombreEmpresa
+FROM cliente
+WHERE IdCliente NOT IN (
+    SELECT DISTINCT IdCliente
+    FROM pedido
+)
+ORDER BY NombreEmpresa
+
+
+
+10- ¿Hay proveedores que no nos sirvan ningún producto?
+
+SELECT prov.NombreEmpresa
+FROM `proveedor` prov LEFT JOIN producto prod
+        ON prov.IdProveedor = prod.IdProveedor
+WHERE prod.IdProducto is NULL
+ORDER BY prov.NombreEmpresa
+
+
+SELECT prov.NombreEmpresa, COUNT(prod.IdProducto) as TotalProductos
+FROM `proveedor` prov LEFT JOIN producto prod
+        ON prov.IdProveedor = prod.IdProveedor
+GROUP BY prov.NombreEmpresa
+HAVING TotalProductos=0
+ORDER BY prov.NombreEmpresa
+
+
+
+11- ¿Hay categorías de producto que no tengan asociado ningún producto?
+
+select c.nombreCategoria
+from categoria c left join producto p 
+	on p.idCategoria=c.idCategoria
+where p.idProducto is null;
+
+
+
+12- Obtener las ciudades (y países) en las que tenemos clientes o proveedores
+
+SELECT c.Pais, c.Ciudad 
+FROM cliente c
+WHERE c.Pais Is NOT NULL AND c.Ciudad IS NOT NULL
+
+UNION 
+
+SELECT p.Pais, p.Ciudad 
+FROM proveedor p 
+WHERE p.Pais Is NOT NULL AND p.Ciudad IS NOT NULL
+
+ORDER BY 1,2;
+
+
+
+13- Obtener un listado de todos los productos y su categoría, incluyendo los productos no categorizados y las categorías que no incluyen productos
+
+SELECT pr.NombreProducto, ct.NombreCategoria
+FROM producto AS pr
+    LEFT JOIN categoria AS ct
+    on pr.IdCategoria = ct.IdCategoria
+UNION
+SELECT pr1.NombreProducto, ct1.NombreCategoria
+FROM producto AS pr1
+    RIGHT JOIN categoria AS ct1
+    on pr1.IdCategoria = ct1.IdCategoria
+ORDER BY 1
+
+
+14- Obtener los nombres y apellidos, el cargo y el teléfono de todos los contactos de nuestra empresa. Añadir un identificador de tipo de contacto a cada de ellos.
+
+SELECT 'Proveedor' AS TipoContacto, nombreContacto, cargoContacto, telefono
+FROM proveedor
+
+UNION
+
+SELECT 'Empleado' AS TipoContacto, CONCAT(nombre, ' ', apellidos), cargo, telDomicilio
+FROM empleado
+
+UNION
+
+SELECT 'Cliente' AS TipoContacto, nombreContacto, cargoContacto, telefono
+FROM cliente
+
+ORDER BY 1,2
+
+
+15- ¿En qué ciudades (y países) tenemos clientes y proveedores a la vez?
+
+Pais	Ciudad
+==============
+
+SELECT DISTINCT c.Ciudad, c.Pais
+FROM cliente c INNER JOIN proveedor p
+    ON c.Ciudad = p.Ciudad AND c.Pais = p.Pais
+ORDER BY 2,1
+
+
+
+SELECT cl.Ciudad,cl.Pais
+FROM cliente AS cl
+
+INTERSECT
+
+SELECT pv.Ciudad,pv.Pais
+FROM proveedor AS pv
+ORDER BY 1
+
+
+15b- ¿Los nombres de los proveedores y clientes que tenemos en aquellas ciudades y países en los que tenemos clientes y proveedores a la vez?
+
+Proveedor	Cliente	Pais	Ciudad
+==================================
+
+
+Empresa	Tipo	Pais Ciudad
+===========================
+
+
+
+16- Queremos saber aquellas ciudades donde tenemos clientes en las cuales no tenemos proveedores.
+
+SELECT cl.Ciudad,cl.Pais
+FROM cliente AS cl
+
+EXCEPT
+
+SELECT pv.Ciudad,pv.Pais
+FROM proveedor AS pv
+ORDER BY 1

@@ -1,0 +1,20 @@
+.gris{
+    background-color: #d1d1d1;
+}
+
+.login{
+    margin-top:50px;
+ }
+
+ #btnEntrar, #btnMovil {
+    width:100%;
+ }
+
+ .end{
+    float:right;
+ }
+
+ .clearer{
+    clear:both;
+ }
+

@@ -1,0 +1,21 @@
+Imagen
+----------------------
+src: texto
+width: number
+height: number
+alt: texto
+caption: texto
+formato: format
+----------------------
+show(elementoHtml)
+mostrar()
+
+
+____________________________________
+
+Format
+----------------------
+border: texto  ("1px solid black")
+shadow: texto	("2px 2px 4px black")
+----------------------
+mostrar()

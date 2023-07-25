@@ -1,0 +1,381 @@
+1.- Nombre, teléfono y ciudad de los clientes de Italia y Francia
+
+14
+
+SELECT NombreEmpresa, Telefono, Ciudad
+FROM cliente
+WHERE Pais IN ('Francia','Italia')
+ORDER BY NombreEmpresa ASC
+
+
+1a.- El nombre y apellido de todos los empleados que sean mujeres, ordenados por apellido y nombre.
+
+5
+
+SELECT Nombre, Apellidos
+FROM empleado 
+WHERE Tratamiento LIKE '%a.'
+ORDER BY Apellidos ASC, Nombre ASC
+
+
+2.- El nombre del producto y el precio de los productos entre 10 y 50 €.
+
+59
+
+SELECT NombreProducto, PrecioUnidad
+FROM producto 
+WHERE PrecioUnidad BETWEEN 10 AND 50
+ORDER BY NombreProducto ASC
+
+
+
+2a.- De la tabla de pedidos, mostrar un listado de pedidos que muestre el idPedido, el código de cliente, la fecha de pedido y los costes logísticos de cada pedido, de los pedidos del último trimestre de 1997, con costes logísticos superiores a 50, ordenados por fecha de pedido.
+
+58
+
+SELECT IdPedido, IdCliente, FechaPedido, Cargo
+FROM pedido
+WHERE FechaPedido BETWEEN '1997-10-01' AND '1997-12-31' AND Cargo > 50 
+ORDER BY FechaPedido ASC
+
+
+2b.- Calcular la suma de los costes logísticos de todos los pedidos del último trimestre de 1997.
+
+1
+
+SELECT SUM(Cargo)
+FROM pedido
+WHERE FechaPedido BETWEEN '1997-10-01' AND '1997-12-31'
+ORDER BY FechaPedido ASC
+
+
+2c.- Calcular la suma de los costes logísticos de todos los pedidos del último trimestre de 1997, calculado por días. Interesa sólo los días en que los costes logísticos son superiores a 75. 
+
+
+
+2d.- Calcular la suma de los costes logísticos de todos los pedidos, calculado por cliente. 
+
+
+
+3.- Obtener los datos completos del producto cuyo identificador es 58.
+
+1
+
+SELECT * 
+FROM producto 
+WHERE IdProducto = 58
+
+
+4.- Queremos saber todos los países de los cuales tenemos clientes. Ordenados alfabeticamente los países.
+
+21
+
+SELECT DISTINCT Pais
+FROM cliente
+ORDER BY Pais
+
+
+5.- Calcular el precio medio de los productos de la categoría bebidas (1)
+
+1
+
+SELECT ROUND(AVG(PrecioUnidad),2)
+FROM producto
+WHERE IdCategoria = 1
+
+
+
+6.- Cuantos productos tenemos que no sean de bebidas (1) ni pescados/mariscos (8)
+
+1
+
+SELECT COUNT(*)
+FROM producto
+WHERE IdCategoria NOT IN (1,8)
+
+
+7.- Los tres productos más caros
+
+3
+
+SELECT NombreProducto
+FROM producto
+ORDER BY PrecioUnidad DESC
+LIMIT 3
+
+
+
+8.- Cual es el stock total de productos que tenemos en nuestro almacén
+
+1
+
+SELECT SUM(UnidadesEnExistencia) AS Total
+FROM producto
+
+
+9.- Inventario valorado de los productos que tenemos en almacén
+
+1
+
+SELECT ROUND(SUM(UnidadesEnExistencia * PrecioUnidad),2) AS InventarioValorado
+FROM producto
+
+
+10.- Obtener el nombre del producto y precio, ordenado por precio, de los productos de bebidas que tengan un precio mayor al precio medio
+
+2
+
+SELECT NombreProducto, PrecioUnidad
+FROM producto
+WHERE IdCategoria=1 AND PrecioUnidad >
+(
+    SELECT AVG(PrecioUnidad)
+	FROM Producto
+)
+ORDER BY PrecioUnidad DESC
+
+
+
+11.- Obtener los productos que estan con stock entre 10 y 20. NombreProducto y stock, ordenados por stock inverso.
+
+17
+
+SELECT NombreProducto, UnidadesEnExistencia
+FROM producto
+WHERE UnidadesEnExistencia BETWEEN 10 AND 20
+ORDER BY UnidadesEnExistencia DESC
+
+
+12.- Obtener un listado de id de pedido y fecha de pedido de los pedidos del año 2011, ordenados por fecha de pedido.
+
+
+
+
+13.- Obtener el nombre y stock de los productos Bebidas, Lácteos y Frutas, ordenados por stock descendente
+
+27
+
+SELECT p.NombreProducto, p.UnidadesEnExistencia, c.NombreCategoria
+FROM producto p INNER JOIN categoria c
+		ON p.IdCategoria = c.IdCategoria
+WHERE c.NombreCategoria LIKE '%bebidas%' OR 
+		c.NombreCategoria LIKE '%lácteos%' OR
+        c.NombreCategoria LIKE '%frutas%'
+ORDER BY p.UnidadesEnExistencia DESC
+
+
+
+14.- Hay algun producto en la base de datos neptuno que no esté categorizado?
+
+0
+
+SELECT NombreProducto
+FROM producto
+WHERE IdCategoria IS NULL
+ORDER BY NombreProducto ASC
+
+
+15.- Listado de clientes, codigo de cliente y nombre de cliente, de los cuales no tenemos el fax
+
+22
+
+SELECT IdCliente, NombreEmpresa
+FROM cliente
+WHERE fax is NULL
+ORDER BY NombreEmpresa
+
+
+15b- Listado productos y categorías incluyendo los productos no categorizados
+
+
+
+15c- Determinar si hay alguna categoriái de la cual no tenemos productos
+
+1
+
+SELECT c.NombreCategoria
+FROM producto p RIGHT JOIN categoria c 
+		ON p.IdCategoria = c.IdCategoria
+WHERE p.NombreProducto IS NULL
+ORDER BY p.NombreProducto
+
+
+
+16.- Queremos saber si tenemos algún producto que no haya tenido pedidos todavía. Listar nombre del producto, ordenados alfabéticamente.
+
+1
+
+SELECT p.NombreProducto
+FROM producto p LEFT JOIN detalles_de_pedido d 
+	ON p.IdProducto = d.IdProducto
+WHERE d.IdPedido IS NULL
+ORDER BY p.NombreProducto
+
+
+16b- Obtener un listado con los IDs de pedido y los importes de cada pedido (núm. lineas y cantidad de bultos), para los pedidos de más 1000 $, pero solo de los pedidos 10248 al 10258.
+
+SELECT IdPedido, COUNT(*), SUM(Cantidad), ROUND(SUM(PrecioUnidad * Cantidad * (1-Descuento)),2) as importe
+FROM detalles_de_pedido
+WHERE IdPedido BETWEEN 10248 AND 10258
+GROUP BY IdPedido
+HAVING importe > 1000
+ORDER BY IdPedido
+
+
+16c- Obtener un listado con los IDs de pedido, fecha del pedido y nombre del cliente y los importes de cada pedido (núm. lineas y cantidad de bultos), para los pedidos de más 1000 $, pero solo de los pedidos 10248 al 10258. Obtener los tres pedidos de más importe.
+
+3
+
+SELECT d.IdPedido, p.FechaPedido, c.NombreEmpresa,
+	COUNT(*) as numLineas, 
+    SUM(Cantidad) as bultos,
+    ROUND(SUM(d.PrecioUnidad * d.Cantidad * (1-d.Descuento)),2) as importe
+FROM detalles_de_pedido d INNER JOIN pedido p 
+		ON d.IdPedido = p.IdPedido
+    INNER JOIN cliente c 
+    	ON p.IdCliente = c.IdCliente
+WHERE d.IdPedido BETWEEN 10248 AND 10258
+GROUP BY d.IdPedido, p.FechaPedido, c.NombreEmpresa
+HAVING importe > 1000
+ORDER BY importe DESC
+LIMIT 3
+
+
+17.- Listar los clientes (nombre compañía, telefono) ordenados por Paises y nombre.
+
+
+
+19.- Agrupando por categorías de productos, mostrar el idCategoría, cuantos productos hay en esa categoría, el precio medio, el precio máximo, el precio mínimo, el stock total y el valor del stock. Ordenado por idCategoría.
+
+8
+
+SELECT c.IdCategoria, c.NombreCategoria, 
+	COUNT(*) as Cantidad,
+    MAX(p.PrecioUnidad) as Máximo,
+    ROUND(AVG(p.PrecioUnidad),2) as PrecioPromedio,
+    MIN(p.PrecioUnidad) as Mínimo,
+    SUM(p.UnidadesEnExistencia) as StockTotal,
+    ROUND(SUM(p.UnidadesEnExistencia * p.PrecioUnidad),2) as ImporteStock
+FROM categoria c INNER JOIN producto p 
+	ON c.IdCategoria = p.IdCategoria
+GROUP BY c.IdCategoria, c.NombreCategoria
+ORDER BY c.IdCategoria
+
+
+
+21.- Agrupando por categorías de productos, mostrar el idCategoría, cuantos productos hay en esa categoría, el precio medio, el precio máximo, el precio mínimo, el stock total y el valor del stock, para los productos cuyo precio sea menor a 25. Ordenado por idCategoría. Pero solo se debe mostrar para las categorías cuyo valor del stock sea superior a 3000.
+
+5
+
+SELECT c.IdCategoria, c.NombreCategoria, 
+	COUNT(*) as Cantidad,
+    MAX(p.PrecioUnidad) as Máximo,
+    ROUND(AVG(p.PrecioUnidad),2) as PrecioPromedio,
+    MIN(p.PrecioUnidad) as Mínimo,
+    SUM(p.UnidadesEnExistencia) as StockTotal,
+    ROUND(SUM(p.UnidadesEnExistencia * p.PrecioUnidad),2) as ImporteStock
+FROM categoria c INNER JOIN producto p 
+	ON c.IdCategoria = p.IdCategoria
+WHERE p.PrecioUnidad < 25
+GROUP BY c.IdCategoria, c.NombreCategoria
+HAVING ImporteStock > 3000
+ORDER BY c.IdCategoria
+
+
+22.- Un listado de clientes de Paris con los importes que nos han comprado en Bebidas.
+
+SELECT c.NombreEmpresa, 
+	SUM(dp.Cantidad * dp.PrecioUnidad * (1 - dp.Descuento)) as Importe,
+    COUNT(*) as Pedidos
+FROM cliente c INNER JOIN pedido p 
+		ON c.IdCliente = p.IdCliente
+	INNER JOIN detalles_de_pedido dp
+    	ON p.IdPedido = dp.IdPedido
+    INNER JOIN producto pr 
+    	ON dp.IdProducto = pr.IdProducto
+    INNER JOIN categoria ca 
+    	ON pr.IdCategoria = ca.IdCategoria
+WHERE c.Ciudad='Paris' AND ca.NombreCategoria = 'Bebidas'
+GROUP BY c.NombreEmpresa
+ORDER BY Importe DESC
+
+
+22b.- Un listado de todos los clientes de Paris con los importes que nos han comprado en Bebidas e incluso si no nos han comprado.
+
+
+SELECT c.NombreEmpresa, 
+(
+	SELECT SUM(dp.Cantidad * dp.PrecioUnidad * (1 - dp.Descuento))
+    FROM cliente c1 INNER JOIN pedido p 
+		ON c1.IdCliente = p.IdCliente
+	INNER JOIN detalles_de_pedido dp
+    	ON p.IdPedido = dp.IdPedido
+    INNER JOIN producto pr 
+    	ON dp.IdProducto = pr.IdProducto
+    INNER JOIN categoria ca 
+    	ON pr.IdCategoria = ca.IdCategoria
+    WHERE c1.IdCliente = c.IdCliente  AND ca.NombreCategoria = 'Bebidas'
+) as Importe
+FROM cliente c
+WHERE c.Ciudad='Paris'
+
+
+
+23.- Un listado de todos los clientes que no nos han comprado el producto más vendido (del que se han vendido más unidades).
+
+Cliente
+cliente 1		1000	(importe vendido del idproducto1)
+cliente 2		1500	
+cliente 3		1200
+cliente 4		0
+...
+
+Productos
+idproducto1 	producto 1	1000
+idproducto2		producto 2	890
+....
+
+
+SELECT c.NombreEmpresa
+FROM cliente AS c
+WHERE
+c.IdCliente NOT IN
+(
+    SELECT DISTINCT c1.IdCliente
+    FROM cliente AS c1
+        INNER JOIN pedido AS p1
+        ON c1.IdCliente = p1.IdCliente
+        INNER JOIN detalles_de_pedido AS dp1
+        ON p1.IdPedido = dp1.IdPedido
+    WHERE dp1.IdProducto =
+    (
+        SELECT pr2.IdProducto
+        FROM producto AS pr2
+            INNER JOIN detalles_de_pedido AS dp2
+            ON pr2.IdProducto = dp2.IdProducto
+        GROUP BY pr2.IdProducto    
+        ORDER BY SUM(dp2.Cantidad) DESC
+        LIMIT 1
+    ) 
+    ORDER BY c1.IdCliente ASC
+)
+ORDER BY c.NombreEmpresa;
+
+
+
+24.- Obtener el último pedido de cada cliente
+
+NombreEmpresa	IdPedido
+
+SELECT c.NombreEmpresa,
+(	
+    SELECT p1.IdPedido
+    FROM cliente AS c1
+        INNER JOIN pedido AS p1
+        ON p1.IdCliente = c1.IdCliente
+    WHERE c1.IdCliente = c.IdCliente
+    ORDER BY p1.IdPedido DESC
+    LIMIT 1
+ ) as UltimoPedido
+FROM cliente as c
+ORDER BY c.NombreEmpresa

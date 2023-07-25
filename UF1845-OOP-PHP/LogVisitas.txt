@@ -1,0 +1,10 @@
+Ejercicio LOGs
+==============
+
+Realizar un log visitas en el site:
+	- Mostrar la página visitada
+	- La fecha en la que se realizó la visita
+	- Características del navegador que hizo la visita.
+	- IP
+	- Se debe realizar los logs por días
+	

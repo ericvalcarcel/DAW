@@ -1,0 +1,22 @@
+Haga su AJAX en 10 pasos
+========================
+
+1) Hacer interface
+
+2) Identificar el elemento que causará el evento que desencadenará AJAX
+
+3) Montar el evento javascript
+
+4) Validar que el ajax se debe desencadenar, recogiendo datos
+
+5) Planteamos el ajax
+
+6) Determinar la URL y los parámetros a enviar (POST/GET)
+
+7) Crear la URL, recoger parámetros y implementar la lógica de negocio.
+
+8) Retornar el data
+
+9) Recogemos en el callback del javascript (success)
+
+10) Actualizar el interface

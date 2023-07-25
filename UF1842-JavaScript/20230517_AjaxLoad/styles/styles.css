@@ -1,0 +1,21 @@
+
+
+
+
+/***********MEDIA QUERIES********/
+
+@media (min-width: 576px) and (max-with: 768px) {
+    /*Tablet-sm*/
+}
+@media (min-width: 768px) and (max-with: 992px) {
+    /*Laptop-md*/
+}
+@media (min-width: 992px) and (max-with: 1200px) {
+    /*Escritorio-lg*/
+}
+@media (min-width: 1200px) and (max-with: 1400px) {
+    /*Escritorio grande-xl*/
+}
+@media (min-width: 1400px) {
+    /*Escritorio muy grande-xxl*/
+}

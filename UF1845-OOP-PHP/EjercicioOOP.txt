@@ -1,0 +1,10 @@
+Ejercicio de OOP
+================
+
+
+Crear una clase abstracta TablaNeptuno que contiene la lógica para conectarse a la base de datos Neptuno. Asegurarse de que esta clase tenga métodos para conectar y desconectar de la base de datos.
+
+Crear una clase Contacto que debe permitir obtener un listado de todos los contactos de la base de datos Neptuno
+
+Crear una clase Proveedor, Cliente y Empleado que implementen las interfaces de lectura (de un registro y de todos los registros de la tabla) y de escritura (crear, actualizar y borrar)
+

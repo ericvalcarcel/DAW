@@ -1,0 +1,9 @@
+A partir del ejercicio de FormCV, hacer las siguientes modificaciones:
+
+- Mostrar dos pestañas en la parte izquierda del interface.
+
+- Pestaña 1: Darse de alta. Muestra el formulario de CV que hemos hecho
+
+- Pestaña 2: Acceder con cuenta. Muestra el formulario de login que hicimos el día anterior.
+
+- En el botón de submit del formulario CV, cambiarlo por un botón que muestre una ventana emergente que indique: "Información enviada correctamente. Gracias por su confianza".

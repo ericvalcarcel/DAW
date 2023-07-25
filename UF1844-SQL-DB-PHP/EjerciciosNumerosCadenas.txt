@@ -1,0 +1,61 @@
+EJERCICIOS números y cadenas
+============================
+
+Ejercicio: Calculadora de IVA
+
+Vamos a crear una calculadora simple que pueda calcular el IVA de un precio dado. El IVA puede variar dependiendo del país, pero para este ejercicio vamos a usar una tasa de IVA del 21% (variante, preparar un combo con varias opciones)
+
+Escribe una función llamada calcularIVA. Esta función debería tomar un precio (un número) como parámetro y debería devolver el precio más el IVA.
+
+Escribe una función llamada formatoMoneda. Esta función debería tomar un número como parámetro y debería devolver ese número formateado como una cadena de texto en formato de moneda con 2 decimales. Por ejemplo, si el número es 1234.5678, la función debería devolver la cadena "1,234.57".
+
+Escribe un script que use ambas funciones. Este script debería tomar un precio, calcular el precio más el IVA utilizando la función calcularIVA, y luego imprimir ese precio formateado con la función formatoMoneda.
+
+
+
+Ejercicio: Cálculo de estadísticas básicas
+
+Vamos a calcular algunas estadísticas básicas para un conjunto de números. Las estadísticas a calcular son el mínimo, el máximo, la media y la mediana.
+
+Escribe una función llamada calcularMinimo. Esta función debería tomar un array de números como parámetro y devolver el número mínimo en el array.
+
+Escribe una función llamada calcularMaximo. Esta función debería tomar un array de números como parámetro y devolver el número máximo en el array.
+
+Escribe una función llamada calcularMedia. Esta función debería tomar un array de números como parámetro y devolver la media de los números.
+
+Escribe una función llamada calcularMediana. Esta función debería tomar un array de números como parámetro y devolver la mediana de los números.
+
+Escribe un script que use estas cuatro funciones. Este script debería tomar un array de números, calcular estas cuatro estadísticas y luego imprimir los resultados.
+
+Notas:
+- calcularMinimo y calcularMaximo usan las funciones min y max de PHP para obtener el mínimo y el máximo de la matriz, respectivamente.
+
+- calcularMedia usa array_sum para sumar todos los números en el array y count para obtener el número total de elementos. Divide la suma por el recuento para obtener la media.
+
+- calcularMediana primero ordena el array con la función sort. Luego, si el número de elementos es impar, devuelve el elemento del medio. Si el número de elementos es par, devuelve la media de los dos elementos del medio.
+
+
+Ejercicio: Generador de acrónimos
+
+Vamos a escribir una función que genere un acrónimo basado en una frase dada. Por ejemplo, para la frase "World Wide Web", el acrónimo sería "WWW".
+
+Escribe una función llamada generarAcrónimo. Esta función debería tomar una cadena como parámetro y devolver una cadena que sea el acrónimo de la frase dada. Para generar el acrónimo, debes tomar la primera letra de cada palabra en la frase y combinarlas todas en una cadena en mayúsculas.
+
+Escribe un script que use esta función. Este script debería tomar una frase, generar el acrónimo utilizando la función generarAcrónimo y luego imprimir el acrónimo.
+
+
+Ejercicio: Generador de URL Slug
+
+Vamos a escribir una función que genere un URL slug a partir de una cadena dada. Un URL slug es una cadena en minúsculas separada por guiones que se utiliza en las URL para mejorar la legibilidad y el SEO. Por ejemplo, para la cadena "Hola Mundo", el URL slug sería "hola-mundo".
+
+Escribe una función llamada generarSlug. Esta función debería tomar una cadena como parámetro y devolver un URL slug para esa cadena. Para generar el slug, debes convertir la cadena a minúsculas, reemplazar todos los espacios por guiones, y eliminar cualquier carácter que no sea una letra, un número o un guión.
+
+Escribe un script que use esta función. Este script debería tomar una cadena, generar el URL slug utilizando la función generarSlug, y luego imprimir el URL slug.
+
+Notas:
+
+strtolower: esta función convierte todos los caracteres alfabéticos de la cadena a minúsculas.
+
+str_replace: esta función reemplaza todos los espacios (' ') en la cadena por guiones ('-').
+
+preg_replace: esta función utiliza una expresión regular para eliminar todos los caracteres que no sean letras minúsculas, números o guiones. La expresión regular /[^a-z0-9\-]/ coincide con cualquier carácter que no sea una letra minúscula (a-z), un número (0-9) o un guión (-). La función preg_replace reemplaza estos caracteres con la cadena vacía (''), efectivamente eliminándolos de la cadena.

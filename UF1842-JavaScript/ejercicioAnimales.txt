@@ -1,0 +1,32 @@
+Animal
+----------------
+nombre: text
+edad: num
+estado: boolean
+
+----------------
+respirar()
+comer()
+morir()
+show()
+_____________________________________
+
+Persona
+----------------
+dni: text
+idioma: text   (es-ES, mx-ES, ca-ES, fr-FR, en-US, en-EN,...)
+
+----------------
+hablar()
+show()
+
+________________________________________
+
+Perro
+----------------
+chip: text
+raza: text
+
+----------------
+ladrar()
+show()

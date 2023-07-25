@@ -1,0 +1,25 @@
+SELECT c.NombreEmpresa
+FROM cliente AS c
+WHERE
+c.IdCliente NOT IN
+(
+    SELECT c1.IdCliente
+    FROM cliente AS c1
+        INNER JOIN pedido AS p1
+        ON c1.IdCliente = p1.IdCliente
+        INNER JOIN detalles_de_pedido AS dp1
+        ON p1.IdPedido = dp1.IdPedido
+    WHERE
+    (
+        SELECT pr2.IdProducto
+        FROM producto AS pr2
+            INNER JOIN detalles_de_pedido AS dp2
+            ON pr2.IdProducto = dp2.IdProducto
+        GROUP BY pr2.IdProducto    
+        ORDER BY SUM(dp2.Cantidad) DESC
+        LIMIT 1
+    ) = dp1.IdProducto
+    GROUP BY c1.NombreEmpresa
+    ORDER BY c1.IdCliente ASC
+)
+ORDER BY c.NombreEmpresa;

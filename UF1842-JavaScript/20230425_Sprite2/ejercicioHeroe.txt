@@ -1,0 +1,8 @@
+Ejercicios:
+
+1.- Mover un sprite en un contenedor. 
+OK - Botones de posicionamiento 
+Pendiente - Restitución a posición original
+Pendiente - Movimiento en diagonal
+Pendiente - Posibilidad de cambiar la velocidad desde el programa
+A la presentación - Movimiento con teclas
